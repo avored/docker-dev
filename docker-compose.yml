@@ -4,7 +4,7 @@ networks:
   laravel:
 
 volumes:
-  mysql:
+  mysql_data:
   avored:
 
 services:
@@ -29,7 +29,7 @@ services:
     restart: unless-stopped
     tty: true
     volumes:
-      - mysql:/etc/mysql
+      - mysql_data:/var/lib/mysql
     ports:
       - "33065:3306"
     environment:
@@ -73,7 +73,7 @@ services:
     container_name: npm
     volumes:
       - ./src/frontend:/project
-      - avored
+      - /project/node_modules
     working_dir: /project
     networks:
       - laravel

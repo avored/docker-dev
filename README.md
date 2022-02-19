@@ -20,9 +20,15 @@ Now setup `.env` file. Open a avored app .env file which is located at `./src/ba
     DB_USERNAME=homestead
     DB_PASSWORD=secret
 
-
-Now we just have to install the AvoRed 
+Now we just have to install the AvoRed and create an avored admin user account
 
     docker-compose run --rm artisan avored:install
     docker-compose run --rm artisan vendor:publish --provider="AvoRed\Framework\AvoRedServiceProvider"
-    docker exec -it npm /bin/bash
+
+Now we need to setup CORS so frontend application can receive api call from backnd.
+Open `./src/backend/config/cors.php` then replace the below line
+
+        'paths' => ['/graphql', 'sanctum/csrf-cookie'],
+        'allowed_origins' => ['http://localhost:8060'],
+
+That's It. Now you can visit `http://localhost:8060` for frontend and for backend you can visit `http://localhost:8050/admin`
