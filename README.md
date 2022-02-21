@@ -6,8 +6,14 @@ Execute the below command:
 
     git clone https://github.com/avored/docker-dev.git
     cd docker-dev
-
     git clone https://github.com/avored/laravel-ecommerce ./src/frontend
+   
+Now we need to create a new env file for frontend `./src/frontend/.env`
+
+    VUE_APP_GRAPHQL_API_ENDPOINT=http://localhost:8050/graphql
+  
+Now we will start the docker container.
+
     docker-compose up -d
     docker-compose run --rm composer create-project laravel/laravel:8.6 ./
     docker-compose run --rm composer require avored/framework
